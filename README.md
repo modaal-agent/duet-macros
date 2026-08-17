@@ -12,6 +12,29 @@ here if you prefer Swift-native ergonomics and accept the measured build tax —
 swift-syntax enters your build graph (as measured: cold +62 %, warm
 ≈ +70 % on a seconds-fast test lane).
 
+## Consuming
+
+```swift
+dependencies: [
+  .package(url: "https://github.com/modaal-agent/duet-macros.git",
+           .upToNextMinor(from: "0.1.0")),
+],
+targets: [
+  .target(name: "Feature", dependencies: [
+    .product(name: "CanonicalSum", package: "duet-macros"),
+  ]),
+]
+```
+
+This is a `0.x` line: minor releases may break API, patch releases stay
+source-compatible. Use `.upToNextMinor(from:)` rather than `from:` — SwiftPM
+reads `from: "0.1.0"` as `0.1.0 ..< 1.0.0`, which would accept a breaking
+`0.2.0` without asking.
+
+This package pins `duet-tools` exactly, so the emission rule-set your
+expansions come from moves only when this package's own version does. See
+[CHANGELOG.md](CHANGELOG.md) for what each version carries.
+
 ## Why a separate repo
 
 A macro dependency pins swift-syntax into every consumer graph. Keeping the
