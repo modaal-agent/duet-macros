@@ -9,7 +9,7 @@
 [duet-tools](https://github.com/modaal-agent/duet-tools) (annotation = the
 `CanonicalSumCodable` marker protocol; regen folded into `duet record`). Opt in
 here if you prefer Swift-native ergonomics and accept the measured build tax —
-swift-syntax enters your build graph (at FC3-b's measurement: cold +62 %, warm
+swift-syntax enters your build graph (as measured: cold +62 %, warm
 ≈ +70 % on a seconds-fast test lane).
 
 ## Why a separate repo

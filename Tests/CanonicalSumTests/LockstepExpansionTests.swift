@@ -6,7 +6,7 @@ import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
 import XCTest
 
-/// The macro half of the arms' lockstep gate (G2, doc-18 §2.2 UPD): the full
+/// The macro half of the arms' lockstep gate: the full
 /// expansion of the SAME worst-case enum the codegen vehicle pins
 /// (tools/duet, CanonicalSumGenTests/GoldenTests) is pinned here as a literal —
 /// BasicFormat's rendering of the shared rule-set (`CanonicalSumEmission`)

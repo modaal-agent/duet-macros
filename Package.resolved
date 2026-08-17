@@ -1,6 +1,24 @@
 {
-  "originHash" : "5060d1899453d091c53830c8c2979fa1e52419c97601d4b7fdc9e89416eaee6a",
+  "originHash" : "07958e6c4f6eb53e72628022fcb78cd3c1448db2c8a01ee7afbdd5826ec098b3",
   "pins" : [
+    {
+      "identity" : "duet",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/modaal-agent/duet.git",
+      "state" : {
+        "revision" : "aa2b2cfe17ea544351514b41ea0aada5eebebf62",
+        "version" : "0.2.1"
+      }
+    },
+    {
+      "identity" : "duet-tools",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/modaal-agent/duet-tools.git",
+      "state" : {
+        "revision" : "1eb0b78a27d5f47b489584a87d65d8918dd1832b",
+        "version" : "0.13.0"
+      }
+    },
     {
       "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",

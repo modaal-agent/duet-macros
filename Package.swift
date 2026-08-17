@@ -7,11 +7,11 @@ import CompilerPluginSupport
 import PackageDescription
 
 // The `@CanonicalSum` macro — the SUPPORTED OPT-IN vehicle of the Swift ceremony
-// killer (G2, FC3-b's amended verdict, doc-18 §2.2 UPD). The scaffold default is
+// killer. The scaffold default is
 // the `duet canonical-sum` codegen verb (annotation = the `CanonicalSumCodable`
 // marker protocol); this macro exists for projects that prefer Swift-native
 // ergonomics and accept the measured build tax (swift-syntax in the app's test
-// lane — cold +62 %, warm ≈ +70 % at FC3-b's measurement). Both vehicles
+// lane — cold +62 %, warm ≈ +70 % as measured). Both vehicles
 // assemble their output from ONE emission rule-set (`CanonicalSumEmission`, the
 // duet-tools repo), so the byte dialect cannot fork; the lockstep expansion
 // gate (Tests/) pins this vehicle's full expansion.
@@ -30,16 +30,17 @@ let package = Package(
     .library(name: "CanonicalSum", targets: ["CanonicalSum"])
   ],
   dependencies: [
-    // Pre-publication: the sibling checkout. Published form:
-    // .package(url: "https://github.com/modaal-agent/duet-tools.git", from: …)
-    .package(path: "../modaal-agent-duet-tools"),
+    // The toolchain, pinned EXACTLY on the shared emission rule-set: the
+    // lockstep gate below pins this vehicle's expansion against it, so the
+    // pair moves in one deliberate re-pin commit.
+    .package(url: "https://github.com/modaal-agent/duet-tools.git", exact: "0.13.0"),
     .package(url: "https://github.com/swiftlang/swift-syntax.git", "600.0.0"..<"700.0.0"),
   ],
   targets: [
     .macro(
       name: "CanonicalSumMacros",
       dependencies: [
-        .product(name: "CanonicalSumEmission", package: "modaal-agent-duet-tools"),
+        .product(name: "CanonicalSumEmission", package: "duet-tools"),
         .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
         .product(name: "SwiftSyntax", package: "swift-syntax"),
         .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
@@ -54,7 +55,7 @@ let package = Package(
       name: "CanonicalSumTests",
       dependencies: [
         "CanonicalSumMacros",
-        .product(name: "CanonicalSumEmission", package: "modaal-agent-duet-tools"),
+        .product(name: "CanonicalSumEmission", package: "duet-tools"),
         .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
       ]
     ),
